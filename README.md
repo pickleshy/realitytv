@@ -69,4 +69,4 @@ Viewership figures were drawn from:
 
 Episode counts are from Wikipedia and IMDb, verified against network/platform episode guides.
 
-_Made by Shaya Bendix Lyon in 2026, with the help of [Claude.ai](https://claude.ai). Why? I mentioned to my partner in passing that "Million Dollar Nanny" seemed slightly less awful than "MILF Manor"... and the idea was born._
+_Made by Shaya Bendix Lyon in 2026, with the help of [Claude.ai](https://claude.ai). Why did I make this? I was thinking that "Million Dollar Nanny" seemed slightly less awful than "MILF Manor"... and the idea was born._
