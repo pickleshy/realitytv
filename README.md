@@ -1,16 +1,16 @@
 # Reality TV: 2004–2024
 
-A visualization of 20 years of reality tv, ranked on a scale of wholesome to depraved.
+This is a visualization of 20 years of reality tv, ranked on a scale of wholesome to depraved.
 
-This is an interactive bubble chart mapping ~70 English-language reality TV shows across two axes: highbrow/lowbrow (X axis) and wholesome/depraved (Y axis). Dot size is scaled to show viewership data. You can toggle between three different ways of measuring the landscape. Each dot represents a show. Position reflects editorial judgment. Size reflects data about viewership and longevity.
+The interactive bubble chart maps ~70 English-language reality TV shows across two axes: highbrow/lowbrow (X axis) and wholesome/depraved (Y axis). Dot size is scaled to show viewership data. You can toggle between three different ways of measuring the landscape. Each dot represents a show. Position reflects editorial judgment. Size reflects data about viewership and longevity.
 
-Highbrow/lowbrow: Does the show's intent assume a curious, intelligent audience, or is it pure entertainment?
+Highbrow/lowbrow: what is the topic of the show? Does the show's intent assume a curious, intelligent audience, or is it just junkfood?
 
-Wholesome/depraved: Does the show profit from exploiting or humiliating its participants? The heaviest weight is exploitation of vulnerable people. Sexual content and manufactured degradation also pull a show toward the depraved end of things. 
+Wholesome/depraved: does the show profit from exploiting or humiliating its participants? The heaviest weight is the exploitation of vulnerable people. Sexual content and manufactured degradation also pull a show toward the depraved end of things. 
 
 ### Modes
 
-Use the buttons under the chart to toggle between modes. All three use the same scale: dot area is proportional to the underlying value, calibrated so the largest show in each mode fills the maximum radius. There is no log compression.
+Use the buttons under the chart to toggle between modes. All three use the same scale: dot area is proportional to the underlying value, calibrated so that the largest show in each mode fills the maximum radius. There is no log compression.
 
 #### Peak viewership
 Dot size = peak or typical audience for the show's best period.
@@ -69,4 +69,11 @@ Viewership figures were drawn from:
 
 Episode counts are from Wikipedia and IMDb, verified against network/platform episode guides.
 
-_Made by Shaya Bendix Lyon in 2026, with the help of [Claude.ai](https://claude.ai). Why did I make this? I was thinking that "Million Dollar Nanny" seemed slightly less awful than "MILF Manor"... and the idea was born._
+### Why?
+Tonight I was thinking about how one horrible reality TV show seemed slightly less awful than another particular reality TV show, and it gave me the idea to create a matrix and work with Claude to rate lots and lots of reality shows. My own reality TV preferences skew very wholesome (*Bakeoff*, *Terrace House*, *Queer Eye*), so I used those and the few atrocious shows I’ve sampled (*MILF Manor*, *Million Dollar Nanny*) – plus a few middle-of-the-roaders – to create a training set that Claude then used to assess the rest. 
+
+Peak viewership was hard to measure (two main sources, not measured in the same way). Total cumulative viewership was even harder to measure (it's a complete guestimate based on peak viewership and longevity). Number of episodes is the most concrete, reliable count of the three.
+
+I was surprised by how many shows exist, and surprised by which quadrant won. View it at https://pickleshy.github.io/realitytv/chart.html
+
+_Made by Shaya Bendix Lyon in 2026, with the help of [Claude.ai](https://claude.ai)._
