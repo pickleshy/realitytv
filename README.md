@@ -2,15 +2,15 @@
 
 This is a visualization of 20 years of reality tv, ranked on a scale of wholesome to depraved.
 
-The interactive bubble chart maps ~70 English-language reality TV shows across two axes: highbrow/lowbrow (X axis) and wholesome/depraved (Y axis). Dot size is scaled to show viewership data. You can toggle between three different ways of measuring the landscape. Each dot represents a show. Position reflects editorial judgment. Size reflects data about viewership and longevity.
+The interactive bubble chart maps 79 English-language reality TV shows across two axes: highbrow/lowbrow (X axis) and wholesome/depraved (Y axis). Dot size is scaled to show viewership data. You can toggle between three different ways of measuring the landscape. Each dot represents a show. Size reflects data about viewership and longevity.
 
 Highbrow/lowbrow: what is the topic of the show? Does the show's intent assume a curious, intelligent audience, or is it just junkfood?
 
 Wholesome/depraved: does the show profit from exploiting or humiliating its participants? The heaviest weight is the exploitation of vulnerable people. Sexual content and manufactured degradation also pull a show toward the depraved end of things. 
 
-### Modes
+### Chart view
 
-Use the buttons under the chart to toggle between modes. All three use the same scale: dot area is proportional to the underlying value, calibrated so that the largest show in each mode fills the maximum radius. There is no log compression.
+Use the buttons under the chart to toggle between modes. All three use the same scale: dot area is proportional to the underlying value, calibrated so that the largest show in each mode fills the maximum radius. There is no log compression. Search for a specific show to isolate it on the chart.
 
 #### Peak viewership
 Dot size = peak or typical audience for the show's best period.
@@ -29,19 +29,22 @@ This is not a published figure anywhere. It systematically favors long-running b
 #### Number of episodes
 Dot size = total episodes through 2024.
 
-This is an verifiable measure of longevity and output, and we can be more confident in this number than we were with viewership estimates. Long-running shows like *Big Brother* (900 episodes), *Survivor* (760 episodes), and *The Challenge* (500 episodes) loom large. Prestige limited (self-contained, limited-run) series like *Making a Murderer* (16 episodes) and *The Last Dance* (10 episodes) shrink to near-minimum.
+This is a verifiable measure of longevity and output, and we can be more confident in this number than we were with viewership estimates. Long-running shows like *Big Brother* (900 episodes), *Survivor* (760 episodes), and *The Challenge* (500 episodes) loom large. Prestige limited (self-contained, limited-run) series like *Making a Murderer* (16 episodes) and *The Last Dance* (10 episodes) shrink to near-minimum.
 
 
 ### Quadrant totals
 
-The small numbers near the axis intersection show the sum of peak viewership / episode count /cumulative viewership) for all shows in that quadrant. The grand total across all 70 shows is displayed below the chart.
+The small numbers near the axis intersection show the sum of peak viewership / episode count / cumulative viewership for all shows in that quadrant. The grand total across all 79 shows is displayed below the chart.
 
+### Table view
+
+Click the grid icon to switch to a sortable table view of all 79 shows. Filter by show name.
 
 ### Methodology
 
 - Placement is editorial, not empirical. Every show's position on both axes reflects judgment calls, not a scoring rubric. Reasonable people will disagree with individual placements.
 - The viewership data is mixed-methodology. Broadcast Nielsen numbers, UK BARB figures, Netflix household counts, and cable ratings are not directly comparable. The chart treats them as best-available proxies. Where a figure is estimated (e.g. Netflix shows pre-2023, when Netflix began releasing data), the tooltip notes this.
-- The sqrt scale. The dot radius = k × √(value), where k is set so the maximum value in each mode hits the maximum radius. This means that dot area is directly proportional to the underlying number. A dot that looks twice as large in area represents a show with twice the viewership/episodes.
+- The sqrt scale. The dot radius = k × √(value), where k is set so the maximum value in each mode hits the maximum radius. This means dot area is directly proportional to the underlying number. A dot that looks twice as large in area represents a show with twice the viewership/episodes.
 - Opacity. Opacity is set to 0.72 to keep overlapping circles legible.
 
 
@@ -64,15 +67,15 @@ Viewership figures were drawn from:
 - Nielsen Media Research (broadcast, via published reports and press releases)
 - UK BARB ratings (BBC, ITV, Channel 4 shows)
 - Netflix self-reported viewership data (post-2023 releases and selected earlier disclosures)
-- Third-party Nielsen streaming estimates (Tiger King, Making a Murderer)
-- Industry reporting via Deadline, Variety, The Wrap, and TV Series Finale
+- Third-party Nielsen streaming estimates (_Tiger King_, _Making a Murderer_)
+- Industry reporting via _Deadline_, _Variety_, _The Wrap_, and _TV Series Finale_
 
 Episode counts are from Wikipedia and IMDb, verified against network/platform episode guides.
 
 ### Why?
 Tonight I was thinking about how one horrible reality TV show seemed slightly less awful than another particular reality TV show, and it gave me the idea to create a matrix and work with Claude to rate lots and lots of reality shows. My own reality TV preferences skew very wholesome (*Bakeoff*, *Terrace House*, *Queer Eye*), so I used those and the few atrocious shows I’ve sampled (*MILF Manor*, *Million Dollar Nanny*) – plus a few middle-of-the-roaders – to create a training set that Claude then used to assess the rest. 
 
-Peak viewership was hard to measure (two main sources, not measured in the same way). Total cumulative viewership was even harder to measure (it's a complete guestimate based on peak viewership and longevity). Number of episodes is the most concrete, reliable count of the three.
+Peak viewership was hard to measure (two main sources that aren't measured in the same way). Total cumulative viewership was even harder to measure (it's a guesstimate based on peak viewership and longevity). Number of episodes is the most concrete, reliable count of the three.
 
 I was surprised by how many shows exist, and surprised by which quadrant won. View it at https://pickleshy.github.io/realitytv/chart.html
 
