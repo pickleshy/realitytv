@@ -682,6 +682,7 @@ let viewMode = "chart";
 function setView(mode) {
   viewMode = mode;
   if (mode === "table") {
+    history.pushState(null, "", "?view=table");
     chartView.style.display   = "none";
     controlsRow.style.display = "none";
     statLine.style.display    = "none";
@@ -693,6 +694,7 @@ function setView(mode) {
     viewToggleBtn.setAttribute("aria-label", "Switch to chart view");
     renderTable();
   } else {
+    history.pushState(null, "", "?view=chart");
     chartView.style.display   = "";
     controlsRow.style.display = "";
     statLine.style.display    = "";
@@ -710,6 +712,13 @@ viewToggleBtn.addEventListener("click", () => {
 });
 
 viewToggleBtn.innerHTML = listSVG;
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get("view") === "table") setView("table");
+
+window.addEventListener("popstate", () => {
+  const params = new URLSearchParams(window.location.search);
+  setView(params.get("view") === "table" ? "table" : "chart");
+});
 
 </script>
 
