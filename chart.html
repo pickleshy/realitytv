@@ -16,6 +16,7 @@
     flex-direction: column;
     align-items: center;
     padding: 2rem 1rem 3rem;
+    overflow-y: scroll;
   }
 
   h1 {
@@ -55,7 +56,6 @@
   .toggle-wrap {
     display: flex;
     gap: 0;
-    margin: 1.25rem 0 0.5rem;
     border: 1px solid #d3d1c7;
     border-radius: 8px;
     overflow: hidden;
@@ -133,6 +133,7 @@
     width: 220px;
     margin-bottom: 0.75rem;
     position: relative;
+    align-self: center;
   }
   .chart-search {
     width: 100%;
@@ -172,29 +173,38 @@
     .chart-search-clear:hover { color: #b4b2a9; }
   }
 
-    /* ── Tab nav ── */
-  .tab-nav {
+    /* ── Controls row ── */
+  .controls-row {
     display: flex;
-    gap: 0;
-    margin: 2.5rem 0 0;
-    border-bottom: 1px solid #d3d1c7;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     width: 100%;
     max-width: 720px;
+    margin: 1.25rem 0 0.5rem;
   }
-  .tab-btn {
-    background: none;
+
+  /* ── Floating action button ── */
+  .view-fab {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #1a1a18;
     border: none;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    padding: 8px 18px;
-    font-size: 13px;
-    font-family: inherit;
-    color: #888780;
     cursor: pointer;
-    transition: color 0.15s, border-color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    transition: background 0.15s, transform 0.1s;
+    z-index: 200;
+    color: #fafaf8;
   }
-  .tab-btn.active { color: #1a1a18; border-bottom-color: #1a1a18; font-weight: 500; }
-  .tab-btn:hover:not(.active) { color: #2c2c2a; }
+  .view-fab:hover { background: #3a3a38; transform: scale(1.06); }
+  .view-fab svg { display: block; }
 
   /* ── Table view ── */
   #table-view {
@@ -277,10 +287,8 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    .tab-nav { border-bottom-color: #5f5e5a; }
-    .tab-btn { color: #5f5e5a; }
-    .tab-btn.active { color: #f1efe8; border-bottom-color: #f1efe8; }
-    .tab-btn:hover:not(.active) { color: #d3d1c7; }
+    .view-fab { background: #f1efe8; color: #1a1a18; }
+    .view-fab:hover { background: #d3d1c7; }
     .tbl-search { background: #2c2c2a; border-color: #5f5e5a; color: #f1efe8; }
     .tbl-search:focus { border-color: #b4b2a9; }
     thead th { background: #1a1a18; border-bottom-color: #5f5e5a; }
@@ -327,16 +335,20 @@
 </svg>
 </div>
 
-<div class="chart-search-wrap" id="chart-search-wrap">
+<div class="chart-search-wrap" id="chart-search-wrap" style="margin-left:auto;margin-right:auto;">
   <input class="chart-search" id="chart-search" type="search" placeholder="Search shows on the chart…" autocomplete="off"/>
   <button class="chart-search-clear" id="chart-search-clear" aria-label="Clear search">✕</button>
 </div>
 
-<div class="toggle-wrap">
-  <button class="toggle-btn active" data-mode="peak">Peak viewership</button>
-  <button class="toggle-btn" data-mode="cum">Est. cumulative viewership</button>
-  <button class="toggle-btn" data-mode="eps">Episode count</button>
+<div class="controls-row" id="controls-row">
+  <div class="toggle-wrap">
+    <button class="toggle-btn active" data-mode="peak">Peak viewership</button>
+    <button class="toggle-btn" data-mode="cum">Est. cumulative viewership</button>
+    <button class="toggle-btn" data-mode="eps">Episode count</button>
+  </div>
 </div>
+
+<button class="view-fab" id="view-toggle" title="Switch to table view" aria-label="Switch to table view"></button>
 
 <p class="stat-line" id="stat-line">
   Combined peak viewership across all 70 shows: <strong>452M</strong>
@@ -346,14 +358,7 @@
   Peak viewership: dot area ∝ peak or typical audience. Broadcast = live+same-day Nielsen; streaming = reported unique viewers/households. Hover any dot for details.
 </p>
 
-<p class="attribution">Made by Shaya Bendix Lyon with the help of <a href="https://claude.ai" style="color:inherit;">Claude.ai</a></p>
 
-
-<!-- ══ TAB NAV ══ -->
-<div class="tab-nav" id="tab-nav">
-  <button class="tab-btn active" data-tab="chart">Chart</button>
-  <button class="tab-btn" data-tab="table">Show list</button>
-</div>
 
 <!-- ══ TABLE VIEW ══ -->
 <div id="table-view">
@@ -661,39 +666,54 @@ document.getElementById("tbl-search").addEventListener("input", e => {
   renderTable();
 });
 
-// Tab switching
-const chartView  = document.querySelector(".chart-wrap");
-const toggleWrap = document.querySelector(".toggle-wrap");
-const statLine   = document.getElementById("stat-line");
-const disclaimer = document.getElementById("disclaimer-text");
-const attrib     = document.querySelector(".attribution");
-const tableView  = document.getElementById("table-view");
+// View toggle (chart ↔ table)
+const chartView     = document.querySelector(".chart-wrap");
+const controlsRow   = document.getElementById("controls-row");
+const statLine      = document.getElementById("stat-line");
+const disclaimer    = document.getElementById("disclaimer-text");
+const tableView     = document.getElementById("table-view");
+const viewToggleBtn = document.getElementById("view-toggle");
 
-document.querySelectorAll(".tab-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const tab = btn.dataset.tab;
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b === btn));
+const listSVG  = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="12" height="2" rx="0.5" fill="currentColor"/><rect x="2" y="7" width="12" height="2" rx="0.5" fill="currentColor"/><rect x="2" y="11" width="12" height="2" rx="0.5" fill="currentColor"/></svg>`;
+const chartSVG = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="12" r="1.8" fill="currentColor"/><circle cx="7" cy="7" r="1.8" fill="currentColor"/><circle cx="11" cy="9" r="1.8" fill="currentColor"/><circle cx="13" cy="4" r="1.8" fill="currentColor"/><circle cx="6" cy="4" r="1.8" fill="currentColor"/></svg>`;
 
-    if (tab === "table") {
-      chartView.style.display  = "none";
-      toggleWrap.style.display = "none";
-      statLine.style.display   = "none";
-      disclaimer.style.display = "none";
-      document.getElementById("chart-search-wrap").style.display = "none";
-      tableView.classList.add("visible");
-      renderTable();
-    } else {
-      chartView.style.display  = "";
-      toggleWrap.style.display = "";
-      statLine.style.display   = "";
-      disclaimer.style.display = "";
-      document.getElementById("chart-search-wrap").style.display = "";
-      tableView.classList.remove("visible");
-    }
-  });
+let viewMode = "chart";
+
+function setView(mode) {
+  viewMode = mode;
+  if (mode === "table") {
+    chartView.style.display   = "none";
+    controlsRow.style.display = "none";
+    statLine.style.display    = "none";
+    disclaimer.style.display  = "none";
+    document.getElementById("chart-search-wrap").style.display = "none";
+    tableView.classList.add("visible");
+    viewToggleBtn.innerHTML = chartSVG;
+    viewToggleBtn.title = "Switch to chart view";
+    viewToggleBtn.setAttribute("aria-label", "Switch to chart view");
+    renderTable();
+  } else {
+    chartView.style.display   = "";
+    controlsRow.style.display = "";
+    statLine.style.display    = "";
+    disclaimer.style.display  = "";
+    document.getElementById("chart-search-wrap").style.display = "";
+    tableView.classList.remove("visible");
+    viewToggleBtn.innerHTML = listSVG;
+    viewToggleBtn.title = "Switch to table view";
+    viewToggleBtn.setAttribute("aria-label", "Switch to table view");
+  }
+}
+
+viewToggleBtn.addEventListener("click", () => {
+  setView(viewMode === "chart" ? "table" : "chart");
 });
 
+viewToggleBtn.innerHTML = listSVG;
+
 </script>
+
+<p class="attribution">Made by Shaya Bendix Lyon with the help of <a href="https://claude.ai" style="color:inherit;">Claude.ai</a></p>
 
 </body>
 </html>
