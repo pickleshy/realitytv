@@ -19,7 +19,7 @@
   }
 
   h1 {
-    font-size: 40px;
+    font-size: 20px;
     font-weight: 500;
     margin-bottom: 1.25rem;
     text-align: center;
@@ -127,6 +127,174 @@
     .disclaimer { color: #5f5e5a; }
     .attribution { color: #5f5e5a; }
   }
+
+  /* ── Chart search ── */
+  .chart-search-wrap {
+    width: 220px;
+    margin-bottom: 0.75rem;
+    position: relative;
+  }
+  .chart-search {
+    width: 100%;
+    padding: 7px 32px 7px 12px;
+    font-size: 12px;
+    font-family: inherit;
+    border: 1px solid #d3d1c7;
+    border-radius: 6px;
+    background: #fafaf8;
+    color: #1a1a18;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .chart-search:focus { border-color: #888780; }
+  .chart-search-clear {
+    position: absolute;
+    right: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #b4b2a9;
+    cursor: pointer;
+    padding: 0 2px;
+    line-height: 1;
+    display: none;
+  }
+  .chart-search-clear:hover { color: #5f5e5a; }
+
+  @media (prefers-color-scheme: dark) {
+    .chart-search { background: #2c2c2a; border-color: #5f5e5a; color: #f1efe8; }
+    .chart-search:focus { border-color: #b4b2a9; }
+    .chart-search-clear { color: #5f5e5a; }
+    .chart-search-clear:hover { color: #b4b2a9; }
+  }
+
+    /* ── Tab nav ── */
+  .tab-nav {
+    display: flex;
+    gap: 0;
+    margin: 2.5rem 0 0;
+    border-bottom: 1px solid #d3d1c7;
+    width: 100%;
+    max-width: 720px;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-family: inherit;
+    color: #888780;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn.active { color: #1a1a18; border-bottom-color: #1a1a18; font-weight: 500; }
+  .tab-btn:hover:not(.active) { color: #2c2c2a; }
+
+  /* ── Table view ── */
+  #table-view {
+    display: none;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 1.25rem;
+    overflow-x: auto;
+  }
+  #table-view.visible { display: block; }
+
+  .tbl-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .tbl-search {
+    flex: 1;
+    min-width: 160px;
+    max-width: 280px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-family: inherit;
+    border: 1px solid #d3d1c7;
+    border-radius: 6px;
+    background: #fafaf8;
+    color: #1a1a18;
+    outline: none;
+  }
+  .tbl-search:focus { border-color: #888780; }
+
+  .tbl-count {
+    font-size: 11px;
+    color: #b4b2a9;
+    margin-left: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  thead th {
+    text-align: left;
+    padding: 7px 10px;
+    font-weight: 500;
+    font-size: 11px;
+    color: #888780;
+    border-bottom: 1px solid #d3d1c7;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    position: sticky;
+    top: 0;
+    background: #fafaf8;
+  }
+  thead th:hover { color: #1a1a18; }
+  thead th .sort-arrow { display: inline-block; margin-left: 3px; opacity: 0.35; font-style: normal; }
+  thead th.sort-asc .sort-arrow,
+  thead th.sort-desc .sort-arrow { opacity: 1; color: #1a1a18; }
+
+  tbody tr { border-bottom: 1px solid #f1efe8; transition: background 0.1s; }
+  tbody tr:hover { background: #f6f4ed; }
+  tbody td { padding: 7px 10px; color: #1a1a18; vertical-align: middle; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; color: #5f5e5a; }
+  td.score { text-align: right; font-variant-numeric: tabular-nums; }
+  td.score.pos { color: #2a7a5a; }
+  td.score.neg { color: #b84040; }
+  td.score.zero { color: #888780; }
+
+  .quadrant-pip {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .tab-nav { border-bottom-color: #5f5e5a; }
+    .tab-btn { color: #5f5e5a; }
+    .tab-btn.active { color: #f1efe8; border-bottom-color: #f1efe8; }
+    .tab-btn:hover:not(.active) { color: #d3d1c7; }
+    .tbl-search { background: #2c2c2a; border-color: #5f5e5a; color: #f1efe8; }
+    .tbl-search:focus { border-color: #b4b2a9; }
+    thead th { background: #1a1a18; border-bottom-color: #5f5e5a; }
+    thead th:hover { color: #f1efe8; }
+    thead th.sort-asc .sort-arrow,
+    thead th.sort-desc .sort-arrow { color: #f1efe8; }
+    tbody tr { border-bottom-color: #2c2c2a; }
+    tbody tr:hover { background: #252523; }
+    tbody td { color: #d3d1c7; }
+    td.num { color: #888780; }
+    td.score.pos { color: #4db88a; }
+    td.score.neg { color: #e07070; }
+    td.score.zero { color: #5f5e5a; }
+    .tbl-count { color: #5f5e5a; }
+  }
+
 </style>
 </head>
 <body>
@@ -157,6 +325,11 @@
 </svg>
 </div>
 
+<div class="chart-search-wrap" id="chart-search-wrap">
+  <input class="chart-search" id="chart-search" type="search" placeholder="Search shows on the chart…" autocomplete="off"/>
+  <button class="chart-search-clear" id="chart-search-clear" aria-label="Clear search">✕</button>
+</div>
+
 <div class="toggle-wrap">
   <button class="toggle-btn active" data-mode="peak">Peak viewership</button>
   <button class="toggle-btn" data-mode="cum">Est. cumulative viewership</button>
@@ -172,6 +345,36 @@
 </p>
 
 <p class="attribution">Made by Shaya Bendix Lyon with the help of <a href="https://claude.ai" style="color:inherit;">Claude.ai</a></p>
+
+
+<!-- ══ TAB NAV ══ -->
+<div class="tab-nav" id="tab-nav">
+  <button class="tab-btn active" data-tab="chart">Chart</button>
+  <button class="tab-btn" data-tab="table">Show list</button>
+</div>
+
+<!-- ══ TABLE VIEW ══ -->
+<div id="table-view">
+  <div class="tbl-controls">
+    <input class="tbl-search" id="tbl-search" type="search" placeholder="Filter shows…" autocomplete="off"/>
+    <span class="tbl-count" id="tbl-count"></span>
+  </div>
+  <table id="shows-table">
+    <thead>
+      <tr>
+        <th data-col="name"    data-type="str">Show <span class="sort-arrow">↕</span></th>
+        <th data-col="q"       data-type="str">Quadrant <span class="sort-arrow">↕</span></th>
+        <th data-col="hb"      data-type="num" title="−10 = max Lowbrow, +10 = max Highbrow">Highbrow score <span class="sort-arrow">↕</span></th>
+        <th data-col="ws"      data-type="num" title="−10 = max Depraved, +10 = max Wholesome">Wholesome score <span class="sort-arrow">↕</span></th>
+        <th data-col="avg"     data-type="num">Peak viewers (M) <span class="sort-arrow">↕</span></th>
+        <th data-col="eps"     data-type="num">Episodes <span class="sort-arrow">↕</span></th>
+        <th data-col="cum"     data-type="num">Est. cumulative (M) <span class="sort-arrow">↕</span></th>
+      </tr>
+    </thead>
+    <tbody id="tbl-body"></tbody>
+  </table>
+</div>
+
 
 <script>
 const shows = [
@@ -344,6 +547,150 @@ function setMode(mode) {
 document.querySelectorAll(".toggle-btn").forEach(btn => {
   btn.addEventListener("click", () => setMode(btn.dataset.mode));
 });
+
+
+// ══ CHART SEARCH ══
+const chartSearch = document.getElementById("chart-search");
+const chartSearchClear = document.getElementById("chart-search-clear");
+
+function applyChartFilter() {
+  const q = chartSearch.value.toLowerCase().trim();
+  const hasQuery = q.length > 0;
+  chartSearchClear.style.display = hasQuery ? "block" : "none";
+
+  document.querySelectorAll(".dot").forEach(dot => {
+    if (!hasQuery) {
+      dot.setAttribute("opacity", "0.72");
+    } else {
+      const match = dot.dataset.name.toLowerCase().includes(q);
+      dot.setAttribute("opacity", match ? "0.92" : "0.07");
+    }
+  });
+}
+
+chartSearch.addEventListener("input", applyChartFilter);
+
+chartSearchClear.addEventListener("click", () => {
+  chartSearch.value = "";
+  applyChartFilter();
+  chartSearch.focus();
+});
+
+// ══ TABLE ══
+const tableData = shows.map(s => {
+  const hb = Math.round((s.cx - 362) / (668 - 55) * 200) / 10;
+  const ws = Math.round((295 - s.cy) / (535 - 42) * 200) / 10;
+  const qLabel = {
+    lw: "Lowbrow · Wholesome",
+    hw: "Highbrow · Wholesome",
+    ld: "Lowbrow · Depraved",
+    hd: "Highbrow · Depraved",
+    amb: "Ambiguous"
+  }[s.q];
+  return { ...s, hb, ws, qLabel };
+});
+
+const qColors = {
+  lw: "#1D9E75", hw: "#534AB7", ld: "#D85A30", hd: "#D4537E", amb: "#888780"
+};
+
+let sortCol = "name", sortDir = 1, filterText = "";
+
+function renderTable() {
+  const query = filterText.toLowerCase();
+  let rows = tableData.filter(r =>
+    r.name.toLowerCase().includes(query) ||
+    r.qLabel.toLowerCase().includes(query)
+  );
+
+  rows.sort((a, b) => {
+    let va = a[sortCol], vb = b[sortCol];
+    if (typeof va === "string") return sortDir * va.localeCompare(vb);
+    return sortDir * (va - vb);
+  });
+
+  document.getElementById("tbl-count").textContent = `${rows.length} of ${tableData.length} shows`;
+
+  const tbody = document.getElementById("tbl-body");
+  tbody.innerHTML = rows.map(r => {
+    const hbClass = r.hb > 0.5 ? "pos" : r.hb < -0.5 ? "neg" : "zero";
+    const wsClass = r.ws > 0.5 ? "pos" : r.ws < -0.5 ? "neg" : "zero";
+    const cumFmt = r.cum >= 1000 ? (r.cum/1000).toFixed(1)+"k" : r.cum;
+    return `<tr>
+      <td>${r.name}</td>
+      <td><span class="quadrant-pip" style="background:${qColors[r.q]}"></span>${r.qLabel}</td>
+      <td class="score ${hbClass}">${r.hb > 0 ? "+" : ""}${r.hb.toFixed(1)}</td>
+      <td class="score ${wsClass}">${r.ws > 0 ? "+" : ""}${r.ws.toFixed(1)}</td>
+      <td class="num">${r.avg}</td>
+      <td class="num">${r.eps.toLocaleString()}</td>
+      <td class="num">${r.cum.toLocaleString()}</td>
+    </tr>`;
+  }).join("");
+
+  // Update sort indicators
+  document.querySelectorAll("thead th").forEach(th => {
+    th.classList.remove("sort-asc", "sort-desc");
+    const arrow = th.querySelector(".sort-arrow");
+    if (th.dataset.col === sortCol) {
+      th.classList.add(sortDir === 1 ? "sort-asc" : "sort-desc");
+      arrow.textContent = sortDir === 1 ? "↑" : "↓";
+    } else {
+      arrow.textContent = "↕";
+    }
+  });
+}
+
+// Sort on header click
+document.querySelectorAll("thead th[data-col]").forEach(th => {
+  th.addEventListener("click", () => {
+    if (sortCol === th.dataset.col) {
+      sortDir *= -1;
+    } else {
+      sortCol = th.dataset.col;
+      sortDir = th.dataset.type === "str" ? 1 : -1; // numbers default desc
+    }
+    renderTable();
+  });
+});
+
+// Filter
+document.getElementById("tbl-search").addEventListener("input", e => {
+  filterText = e.target.value;
+  renderTable();
+});
+
+// Tab switching
+const chartView  = document.querySelector(".chart-wrap");
+const toggleWrap = document.querySelector(".toggle-wrap");
+const statLine   = document.getElementById("stat-line");
+const disclaimer = document.getElementById("disclaimer-text");
+const attrib     = document.querySelector(".attribution");
+const tableView  = document.getElementById("table-view");
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tab = btn.dataset.tab;
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b === btn));
+
+    if (tab === "table") {
+      chartView.style.display  = "none";
+      toggleWrap.style.display = "none";
+      statLine.style.display   = "none";
+      disclaimer.style.display = "none";
+      document.getElementById("chart-search-wrap").style.display = "none";
+      tableView.classList.add("visible");
+      renderTable();
+    } else {
+      chartView.style.display  = "";
+      toggleWrap.style.display = "";
+      statLine.style.display   = "";
+      disclaimer.style.display = "";
+      document.getElementById("chart-search-wrap").style.display = "";
+      tableView.classList.remove("visible");
+    }
+  });
+});
+
 </script>
 
 </body>
