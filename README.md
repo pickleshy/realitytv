@@ -31,8 +31,7 @@ Dot size = total episodes through 2024.
 
 This is a verifiable measure of longevity and output, and we can be more confident in this number than we were with viewership estimates. Long-running shows like *Big Brother* (900 episodes), *Survivor* (760 episodes), and *The Challenge* (500 episodes) loom large. Prestige limited (self-contained, limited-run) series like *Making a Murderer* (16 episodes) and *The Last Dance* (10 episodes) shrink to near-minimum.
 
-
-### Quadrant totals
+#### Quadrant totals
 
 The small numbers near the axis intersection show the sum of peak viewership / episode count / cumulative viewership for all shows in that quadrant. The grand total across all 79 shows is displayed below the chart.
 
