@@ -35,7 +35,7 @@ This is a verifiable measure of longevity and output, and we can be more confide
 
 The small numbers near the axis intersection show the sum of peak viewership / episode count / cumulative viewership for all shows in that quadrant. The grand total across all 79 shows is displayed below the chart.
 
-### Table view
+#### Table view
 
 Click the grid icon to switch to a sortable table view of all 79 shows. Filter by show name.
 
